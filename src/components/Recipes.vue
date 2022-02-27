@@ -19,7 +19,8 @@
           {{ recipe.description_recette }}
         </b-card-text>
 
-        <b-button href="#" variant="primary">Voir la recette</b-button>
+        <b-button href="#" variant="primary"><RouterLink :to="'recipe/' + recipe._id">Voir la recette</RouterLink></b-button>
+<!--        <b-button href="#" variant="primary"><RouterLink :to="{ name: 'recipe' + recipe._id, params: { recipeId: recipe._id }}">Voir la recette</RouterLink></b-button>-->
       </b-card>
     </b-card-group>
   </div>
@@ -34,7 +35,7 @@ export default {
     },
   },
   async mounted() {
-    this.$store.dispatch("initRecipes");
+    await this.$store.dispatch("initRecipes");
   },
 };
 </script>

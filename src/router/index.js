@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "../views/Home";
 import SecondPage from "../views/SecondPage";
 import Login from "../views/Login";
+import Recipe from "@/components/Recipe";
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ const router = new Router({
       path: "/login",
       name: "loginPage",
       component: Login
+    },
+    {
+      path: "/recipe",
+      name: "recipe",
+      component: Recipe
     }
   ]
 });
