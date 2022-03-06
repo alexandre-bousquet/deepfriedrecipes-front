@@ -40,9 +40,14 @@ export default new Vuex.Store({
                 router.addRoute({ path: '/recipe/' + recipes[i]._id, component: Recipe, props: { recipeId: recipes[i]._id }})
             }
         },
-        updateUserToken(state, userToken) {
-            state.userToken = userToken;
-        }
+        setUserToken(state, userToken) {
+            if (localStorage.getItem("userToken") !== null) {
+                state.userToken = localStorage.getItem("userToken");
+            } else {
+                localStorage.setItem("userToken", userToken);
+                state.userToken = localStorage.getItem("userToken");
+            }
+        },
     },
     actions: {
         initRecipes({commit}) {
@@ -56,14 +61,6 @@ export default new Vuex.Store({
                     console.log({error});
                     console.log("Server not up");
                 });
-        },
-        initUserToken(context) {
-            if (localStorage.getItem("userToken") !== null) {
-                context.commit("updateUserToken", localStorage.getItem("userToken"));
-            }
-        },
-        setUserTokenLogin(context, userToken) {
-            context.commit("updateUserToken", userToken);
         },
         async getRecipe(context, id) {
             const response = await axios
@@ -86,6 +83,21 @@ export default new Vuex.Store({
             } catch(error) {
                 return 401
             }
-        }
+        },
+        async login(context, form) {
+            try {
+                await axios.post("https://deepfriedrecipes.herokuapp.com/login", {
+                    email: form.email,
+                    password: form.password
+                }).then((response) => {
+                    console.log(response.data.jwt);
+                    context.commit("setUserToken", response.data.jwt);
+                });
+                return 200;
+            } catch(error) {
+                console.log(error)
+                return 401;
+            }
+        },
     }
 });

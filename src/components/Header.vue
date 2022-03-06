@@ -9,8 +9,14 @@
         <b-navbar-nav>
           <!--<b-nav-item href="#"></b-nav-item>-->
           <router-link to="/">Home</router-link>
-          <router-link to="/login">Login</router-link>
-          <router-link to="/register">Register</router-link>
+          <div v-if="$store.getters.getUserToken == null">
+            <router-link to="/login">Login</router-link>
+            <router-link to="/register">Register</router-link>
+          </div>
+          <div v-else>
+            <router-link to="/login">Profil</router-link>
+            <b-button>Déconnexion</b-button>
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
