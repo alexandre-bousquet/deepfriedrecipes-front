@@ -70,10 +70,22 @@ export default new Vuex.Store({
                 .get("https://deepfriedrecipes.herokuapp.com/recipes/get/" + id)
                 .catch((error) => {
                     console.log({error});
-                    console.log("Server not up");
                 });
             console.log(response.data)
             return response.data
+        },
+        async register(context, form) {
+            try {
+                await axios.post("https://deepfriedrecipes.herokuapp.com/my-users/post", {
+                    firstname: form.firstname,
+                    lastname: form.lastname,
+                    email: form.email,
+                    password: form.password
+                })
+                return 200
+            } catch(error) {
+                return 401
+            }
         }
     }
 });

@@ -4,6 +4,7 @@ import Home from "../views/Home";
 import SecondPage from "../views/SecondPage";
 import Login from "../views/Login";
 import RecipeView from "@/views/RecipeView";
+import Register from "@/views/Register";
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ const router = new Router({
       path: "/recipe/:id",
       name: "recipe",
       component: RecipeView
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register
     }
   ]
 });
