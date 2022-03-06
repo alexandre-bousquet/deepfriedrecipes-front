@@ -64,6 +64,16 @@ export default new Vuex.Store({
         },
         setUserTokenLogin(context, userToken) {
             context.commit("updateUserToken", userToken);
+        },
+        async getRecipe(context, id) {
+            const response = await axios
+                .get("https://deepfriedrecipes.herokuapp.com/recipes/get/" + id)
+                .catch((error) => {
+                    console.log({error});
+                    console.log("Server not up");
+                });
+            console.log(response.data)
+            return response.data
         }
     }
 });

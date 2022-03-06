@@ -4,22 +4,18 @@
     <br />
     <b-card-group deck>
       <b-card
-          :title="recipe.name_recette"
+          :title="title"
+          :img-src="'https://restbd-alex.tinygoblins.fr/media/' + picture"
+          :img-alt="'https://restbd-alex.tinygoblins.fr/media/' + picture"
           img-top
-          class="mb-2"
-      >
-        <b-card
-          :title="recipe.name_recette"
-          :img-src="recipe.image_recette[0] ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette[0] : null"
-          :img-alt="recipe.image_recette[0] ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette[0] : null"
-          img-top
-          class="mb-2"/>
+          class="mb-2">
+
         <b-card-text>
-          {{ recipe.description_recette }}
-          {{ recipe.temps_recette }}
-          {{ recipe.ingredients_recette }}
-          {{ recipe.etapes_recette }}
-          {{ recipe.user[0].email }}
+          {{ description }}
+          {{ time }}
+          {{ ingredients }}
+          {{ stapes }}
+          {{ userEmail }}
         </b-card-text>
 
       </b-card>
@@ -28,32 +24,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "Recipe",
   props: {
-    recipeId: String
-  },
-  data() {
-    return {
-      recipe: {},
-    }
-  },
-  computed: {
-    ...mapGetters({
-      getRecipe: 'getRecipe',
-      getRecipes: 'getRecipes'
-    })
-  },
-  async mounted() {
-    /*console.log(this.recipeId);
-    console.log(this.getRecipe(this.recipeId));*/
-    if (this.getRecipes.length <= 0) {
-      await this.$store.dispatch("initRecipes");
-    }
-    this.recipe = this.getRecipe(this.recipeId);
-  },
+    picture: String,
+    title: String,
+    description: String,
+    time: String,
+    ingredients: String,
+    stapes: String,
+    userEmail: String
+  }
 };
 </script>
 
