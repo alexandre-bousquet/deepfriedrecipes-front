@@ -12,7 +12,7 @@ Vue.use(BootstrapVue);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 
-//store.dispatch('initRecipes');
+store.dispatch("initUserToken");
 
 new Vue({
   render: (h) => h(App),

@@ -15,7 +15,7 @@
           </div>
           <div v-else>
             <router-link to="/login">Profil</router-link>
-            <b-button>Déconnexion</b-button>
+            <b-button @click="$store.dispatch('logout')">Déconnexion</b-button>
           </div>
         </b-navbar-nav>
       </b-collapse>

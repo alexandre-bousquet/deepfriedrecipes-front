@@ -41,13 +41,12 @@ export default new Vuex.Store({
             }
         },
         setUserToken(state, userToken) {
-            if (localStorage.getItem("userToken") !== null) {
-                state.userToken = localStorage.getItem("userToken");
-            } else {
-                localStorage.setItem("userToken", userToken);
-                state.userToken = localStorage.getItem("userToken");
-            }
+            state.userToken = userToken;
+            localStorage.setItem("userToken", userToken);
         },
+        destroyUser(state) {
+            state.userToken = null;
+        }
     },
     actions: {
         initRecipes({commit}) {
@@ -99,5 +98,15 @@ export default new Vuex.Store({
                 return 401;
             }
         },
+        initUserToken(context) {
+            const userToken = window.localStorage.getItem("userToken");
+            if (userToken != null) {
+                context.commit("setUserToken", userToken);
+            }
+        },
+        logout(context) {
+            window.localStorage.clear();
+            context.commit("destroyUser");
+        }
     }
 });
