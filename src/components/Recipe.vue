@@ -8,13 +8,12 @@
           img-top
           class="mb-2"
       >
-<!--        <b-card
+        <b-card
           :title="recipe.name_recette"
-          :img-src="recipe.image_recette[0] ? 'https://deepfriedrecipes-be35.restdb.io/media/' + recipe.image_recette[0] : null"
-          :img-alt="recipe.image_recette[0] ? 'https://deepfriedrecipes-be35.restdb.io/media/' + recipe.image_recette[0] : null"
+          :img-src="recipe.image_recette[0] ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette[0] : null"
+          :img-alt="recipe.image_recette[0] ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette[0] : null"
           img-top
-          class="mb-2"
-      >-->
+          class="mb-2"/>
         <b-card-text>
           {{ recipe.description_recette }}
           {{ recipe.temps_recette }}

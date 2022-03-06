@@ -8,7 +8,7 @@
         :key="recipe._id"
         :title="recipe.name_recette"
         :img-src="
-          'https://deepfriedrecipes-be35.restdb.io/media/' +
+          'https://restbd-alex.tinygoblins.fr/media/' +
           recipe.image_recette[0]
         "
         :img-alt="recipe.image_recette[0]"
