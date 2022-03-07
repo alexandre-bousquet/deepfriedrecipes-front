@@ -12,7 +12,7 @@ Vue.use(BootstrapVue);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 
-store.dispatch("initUserToken");
+store.dispatch("initUser");
 
 new Vue({
   render: (h) => h(App),

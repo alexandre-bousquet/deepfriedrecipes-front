@@ -12,7 +12,8 @@ export default new Vuex.Store({
     state: {
         skills: [],
         recipes: [],
-        userToken: null
+        userToken: null,
+        userConnected: null
     },
     getters: {
         getUserToken: (state) => {
@@ -27,6 +28,11 @@ export default new Vuex.Store({
             //console.log(state.recipes);
             return state.recipes.find(recipe => recipe._id === recipeId);
             //return axios.get("https://deepfriedrecipes.herokuapp.com/recipes/get" + recipeId);
+        },
+        getUserConnected: (state) => {
+            if (state.userConnected !== null) {
+                return state.userConnected;
+            }
         }
     },
     mutations: {
@@ -46,6 +52,10 @@ export default new Vuex.Store({
         },
         destroyUser(state) {
             state.userToken = null;
+        },
+        setUserConnected(state, userConnected) {
+            state.userConnected = userConnected;
+            localStorage.setItem("userConnected", userConnected);
         }
     },
     actions: {
@@ -70,6 +80,20 @@ export default new Vuex.Store({
             console.log(response.data)
             return response.data
         },
+        async deleteRecipe(context, id) {
+            await axios.get("https://deepfriedrecipes.herokuapp.com/recipes/delete/" + id, {
+                headers: {
+                    'Authorization': 'Bearer ' + context.getters.getUserToken,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                console.log({response});
+            })
+            .catch((error) => {
+                console.log({error});
+            });
+        },
         async register(context, form) {
             try {
                 await axios.post("https://deepfriedrecipes.herokuapp.com/my-users/post", {
@@ -89,20 +113,27 @@ export default new Vuex.Store({
                     email: form.email,
                     password: form.password
                 }).then((response) => {
-                    console.log(response.data.jwt);
+                    console.log(response.data);
                     context.commit("setUserToken", response.data.jwt);
+                    context.commit("setUserConnected", response.data.user);
                 });
                 return 200;
             } catch(error) {
                 console.log(error)
                 return 401;
             }
+
         },
-        initUserToken(context) {
+        initUser(context) {
             const userToken = window.localStorage.getItem("userToken");
+            const user = window.localStorage.getItem("userConnected");
             if (userToken != null) {
                 context.commit("setUserToken", userToken);
             }
+            if (user != null) {
+                context.commit("setUserConnected", user)
+            }
+            console.log(user)
         },
         logout(context) {
             window.localStorage.clear();

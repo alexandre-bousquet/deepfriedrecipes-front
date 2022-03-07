@@ -2,13 +2,7 @@
   <div>
     <Recipe
         v-if="recipe"
-        :picture="recipe.image_recette[0]"
-        :title="recipe.name_recette"
-        :description="recipe.description_recette"
-        :time="recipe.temps_recette"
-        :ingredients="recipe.ingredients_recette"
-        :stapes="recipe.etapes_recette"
-        :userEmail="recipe.user[0].email"
+        :recipe="recipe"
     />
   </div>
 </template>
