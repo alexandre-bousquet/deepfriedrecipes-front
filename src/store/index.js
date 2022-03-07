@@ -55,7 +55,7 @@ export default new Vuex.Store({
         },
         setUserConnected(state, userConnected) {
             state.userConnected = userConnected;
-            localStorage.setItem("userConnected", userConnected);
+            localStorage.setItem("userConnected", JSON.stringify(userConnected));
         }
     },
     actions: {
@@ -126,14 +126,13 @@ export default new Vuex.Store({
         },
         initUser(context) {
             const userToken = window.localStorage.getItem("userToken");
-            const user = window.localStorage.getItem("userConnected");
+            const user = JSON.parse(window.localStorage.getItem("userConnected"));
             if (userToken != null) {
                 context.commit("setUserToken", userToken);
             }
             if (user != null) {
                 context.commit("setUserConnected", user)
             }
-            console.log(user)
         },
         logout(context) {
             window.localStorage.clear();
