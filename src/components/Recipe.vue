@@ -29,8 +29,7 @@ export default {
   name: "Recipe",
   data() {
     return {
-      user: this.$store.state.user,
-      userToken: this.$store.state.userToken
+      user: this.$store.state.user
     }
   },
   props: {
