@@ -1,6 +1,6 @@
 <template>
     <b-card>
-      <div v-if="$store.getters.getUserToken == null">
+      <div v-if="$store.getters.getUser == null">
         <h1 class="centerT">Login</h1>
         <br>
         <b-form @submit="onSubmit">
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import {mapActions, mapState} from "vuex";
+import {mapActions} from "vuex";
 
 export default {
   name: "Login",
@@ -46,11 +46,6 @@ export default {
         password: "",
       },
     };
-  },
-  computed: {
-    ...mapState({
-      userToken: 'userToken',
-    }),
   },
   methods: {
     ...mapActions({

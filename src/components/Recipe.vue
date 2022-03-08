@@ -17,7 +17,7 @@
           {{ recipe.etapes_recette }}
           {{ recipe.user[0].email }}
         </b-card-text>
-        <b-button v-if="userConnected && userConnected.email === recipe.user[0].email" variant="danger" @click="onClick">Supprimer la recette</b-button>
+        <b-button v-if="user && user.email === recipe.user[0].email" variant="danger" @click="onClick">Supprimer la recette</b-button>
       </b-card>
     </b-card-group>
   </div>
@@ -29,7 +29,7 @@ export default {
   name: "Recipe",
   data() {
     return {
-      userConnected: this.$store.state.userConnected,
+      user: this.$store.state.user,
       userToken: this.$store.state.userToken
     }
   },

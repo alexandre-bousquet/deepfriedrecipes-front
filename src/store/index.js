@@ -12,15 +12,9 @@ export default new Vuex.Store({
     state: {
         skills: [],
         recipes: [],
-        userToken: null,
-        userConnected: null
+        user: null
     },
     getters: {
-        getUserToken: (state) => {
-            if (state.userToken !== null) {
-                return state.userToken;
-            }
-        },
         getRecipes : (state) => {
             return state.recipes;
         },
@@ -29,9 +23,9 @@ export default new Vuex.Store({
             return state.recipes.find(recipe => recipe._id === recipeId);
             //return axios.get("https://deepfriedrecipes.herokuapp.com/recipes/get" + recipeId);
         },
-        getUserConnected: (state) => {
-            if (state.userConnected !== null) {
-                return state.userConnected;
+        getUser: (state) => {
+            if (state.user !== null) {
+                return state.user;
             }
         }
     },
@@ -46,16 +40,12 @@ export default new Vuex.Store({
                 router.addRoute({ path: '/recipe/' + recipes[i]._id, component: Recipe, props: { recipeId: recipes[i]._id }})
             }
         },
-        setUserToken(state, userToken) {
-            state.userToken = userToken;
-            localStorage.setItem("userToken", userToken);
-        },
         destroyUser(state) {
-            state.userToken = null;
+            state.user = null;
         },
-        setUserConnected(state, userConnected) {
-            state.userConnected = userConnected;
-            localStorage.setItem("userConnected", JSON.stringify(userConnected));
+        setUser(state, user) {
+            state.user = user;
+            localStorage.setItem("user", JSON.stringify(user));
         }
     },
     actions: {
@@ -86,7 +76,7 @@ export default new Vuex.Store({
         async deleteRecipe(context, id) {
             await axios.get("https://deepfriedrecipes.herokuapp.com/recipes/delete/" + id, {
                 headers: {
-                    'Authorization': 'Bearer ' + context.getters.getUserToken,
+                    'Authorization': 'Bearer ' + context.getters.getUser.jwt,
                     'Content-Type': 'application/json'
                 }
             })
@@ -117,8 +107,7 @@ export default new Vuex.Store({
                     password: form.password
                 }).then((response) => {
                     console.log(response.data);
-                    context.commit("setUserToken", response.data.jwt);
-                    context.commit("setUserConnected", response.data.user);
+                    context.commit("setUser", response.data.user);
                 });
                 return 200;
             } catch(error) {
@@ -128,13 +117,9 @@ export default new Vuex.Store({
 
         },
         initUser(context) {
-            const userToken = window.localStorage.getItem("userToken");
-            const user = JSON.parse(window.localStorage.getItem("userConnected"));
-            if (userToken != null) {
-                context.commit("setUserToken", userToken);
-            }
+            const user = JSON.parse(window.localStorage.getItem("user"));
             if (user != null) {
-                context.commit("setUserConnected", user)
+                context.commit("setUser", user)
             }
         },
         logout(context) {
