@@ -9,7 +9,7 @@
         <b-navbar-nav>
           <!--<b-nav-item href="#"></b-nav-item>-->
           <router-link to="/">Home</router-link>
-          <div v-if="$store.getters.getUserToken == null">
+          <div v-if="$store.getters.getUser == null">
             <router-link to="/login">Login</router-link>
             <router-link to="/register">Register</router-link>
           </div>
