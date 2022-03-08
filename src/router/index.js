@@ -5,6 +5,7 @@ import SecondPage from "../views/SecondPage";
 import Login from "../views/Login";
 import RecipeView from "@/views/RecipeView";
 import Register from "@/views/Register";
+import Profil from "@/components/Profil";
 
 Vue.use(Router);
 
@@ -35,6 +36,11 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Register
+    },
+    {
+      path: "/profil",
+      name: "profilPage",
+      component: Profil
     }
   ]
 });

@@ -80,6 +80,9 @@ export default new Vuex.Store({
             console.log(response.data)
             return response.data
         },
+        getRecipeByUser(context, email) {
+            return this.state.recipes.filter(recipe => recipe.user[0].email === email)
+        },
         async deleteRecipe(context, id) {
             await axios.get("https://deepfriedrecipes.herokuapp.com/recipes/delete/" + id, {
                 headers: {
