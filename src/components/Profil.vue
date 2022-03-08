@@ -1,5 +1,5 @@
 <template>
-  <div class="marAuto">
+  <div>
     <Recipes v-if="recipes.length > 0"
         :recipeList="recipes"
     />
@@ -36,24 +36,5 @@ export default {
 </script>
 
 <style scoped>
-img {
-  width: 100%;
-  height: 500px;
-}
 
-.marAuto {
-  margin: auto !important;
-}
-
-.card-group {
-  max-width: 100%;
-}
-
-.card {
-  max-width: 600px;
-}
-
-.padBot20 {
-  padding-bottom: 20px;
-}
 </style>

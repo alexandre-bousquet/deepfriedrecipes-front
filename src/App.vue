@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header />
-    <router-view />
+    <div id="container">
+      <router-view />
+    </div>
     <Footer />
   </div>
 </template>
@@ -31,6 +33,7 @@ export default {
 
 #container {
   justify-content: space-between;
+  padding: 30px;
 }
 
 .centerT {

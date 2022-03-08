@@ -7,7 +7,7 @@
 
 <script>
 import {mapActions} from "vuex";
-import Recipe from "@/components/Recipe";
+import Recipe from "@/components/Recipe/Recipe";
 export default {
   name: "RecipeView",
   components: {Recipe},

@@ -1,22 +1,18 @@
 <template>
-  <div id="container">
-    <Content />
-  </div>
+  <RecipesListView/>
 </template>
 
 <script>
-import Content from "../components/Content";
+import RecipesListView from "@/views/RecipesListView";
 
 export default {
   name: "Home",
   components: {
-    Content,
+    RecipesListView,
   },
 };
 </script>
 
 <style scoped>
-#container {
-  padding: 30px;
-}
+
 </style>

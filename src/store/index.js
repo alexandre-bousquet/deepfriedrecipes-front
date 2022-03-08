@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import router from "@/router";
-import Recipe from "@/components/Recipe";
+import Recipe from "@/components/Recipe/Recipe";
 /*import { getSkills } from "@/helpers/apiHelper";
 import { getRecipes } from "@/helpers/apiHelper";*/
 
