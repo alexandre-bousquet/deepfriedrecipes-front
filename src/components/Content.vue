@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Recipes from "@/components/Recipes";
+import Recipes from "@/views/RecipesListView";
 
 export default {
   name: "Content",

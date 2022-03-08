@@ -1,14 +1,14 @@
 <template>
-    <RecipeListView
+    <Recipes
         :recipeList="recipes"
     />
 </template>
 
 <script>
-import RecipeListView from "@/views/RecipeListView";
+import Recipes from "@/components/Recipe/Recipes";
 export default {
-  name: "Recipes",
-  components: {RecipeListView},
+  name: "RecipesListView",
+  components: {Recipes},
   computed: {
     recipes() {
       return this.$store.state.recipes;

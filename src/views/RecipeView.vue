@@ -1,10 +1,8 @@
 <template>
-  <div>
     <Recipe
         v-if="recipe"
         :recipe="recipe"
     />
-  </div>
 </template>
 
 <script>

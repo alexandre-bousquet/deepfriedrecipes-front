@@ -1,6 +1,6 @@
 <template>
   <div class="marAuto">
-    <RecipeListView v-if="recipes.length > 0"
+    <Recipes v-if="recipes.length > 0"
         :recipeList="recipes"
     />
     <b-card-group v-else class="centerT padBot20">
@@ -11,11 +11,11 @@
 
 <script>
 import {mapActions} from "vuex";
-import RecipeListView from "@/views/RecipeListView";
+import Recipes from "@/components/Recipe/Recipes";
 
 export default {
   name: "Profil",
-  components: {RecipeListView},
+  components: {Recipes},
   data() {
     return {
       recipes: Array,

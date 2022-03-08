@@ -5,7 +5,7 @@
       <b-card
           v-for="recipe in recipeList"
           :key="recipe._id"
-          :title="recipe.name_recette + ' (' + recipe.temps_recette + ')'"
+          :title="recipe.temps_recette ? recipe.name_recette + ' (' + recipe.temps_recette + ')' : recipe.name_recette"
           :img-src="
           'https://restbd-alex.tinygoblins.fr/media/' +
           recipe.image_recette[0]
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "RecipeListView",
+  name: "Recipes",
   props: {
     recipeList: []
   }
