@@ -14,8 +14,8 @@
             <router-link to="/register">Register</router-link>
           </div>
           <div v-else>
-            <router-link to="/login">Profil</router-link>
-            <b-button @click="$store.dispatch('logout')">Déconnexion</b-button>
+            <router-link to="/profil">Profil</router-link>
+            <b-button @click="$route.name !== 'home' ? $store.dispatch('logout') && $router.push('/') : $store.dispatch('logout')">Déconnexion</b-button>
           </div>
         </b-navbar-nav>
       </b-collapse>
