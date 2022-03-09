@@ -11,9 +11,6 @@ import Recipe from "@/components/Recipe/Recipe";
 export default {
   name: "RecipeView",
   components: {Recipe},
-  props: {
-    recipeId: String
-  },
   data() {
     return {
       recipe: {},

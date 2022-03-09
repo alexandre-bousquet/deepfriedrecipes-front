@@ -87,6 +87,18 @@ export default new Vuex.Store({
                 console.log({error});
             });
         },
+        async updateRecipe(context, form) {
+            await axios.post("https://deepfriedrecipes.herokuapp.com/recipes/put/" + form._id, form, {
+                headers: {
+                    'Authorization': 'Bearer ' + context.getters.getUser.jwt,
+                    'Content-Type': 'application/json'
+                }
+            }).then(result => {
+                return result.data
+            }).catch(error => {
+                return error
+            })
+        },
         async register(context, form) {
             try {
                 await axios.post("https://deepfriedrecipes.herokuapp.com/my-users/post", {
