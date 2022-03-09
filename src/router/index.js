@@ -5,6 +5,7 @@ import Login from "@/views/Login";
 import RecipeView from "@/views/RecipeView";
 import Register from "@/views/Register";
 import Profil from "@/components/Profil";
+import store from "@/store/index";
 
 Vue.use(Router);
 
@@ -39,9 +40,12 @@ const router = new Router({
   ]
 });
 
-/*router.beforeEach((to, from, next) => {
-  if (to.name !== "loginPage") next({ name: "loginPage" });
-  else next();
-});*/
+router.beforeEach((to, from, next) => {
+  if ((to.name !== "loginPage" && to.name !== "register") && store.getters.getUser == null) {
+    next({ name: "loginPage" });
+  } else {
+    next();
+  }
+});
 
 export default router;

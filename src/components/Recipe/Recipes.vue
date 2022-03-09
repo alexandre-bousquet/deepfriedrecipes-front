@@ -19,7 +19,6 @@
         </b-card-text>
 
         <RouterLink :to="'recipe/' + recipe._id" class="custom-button">Voir la recette</RouterLink>
-        <!--        <b-button href="#" variant="primary"><RouterLink :to="{ name: 'recipe' + recipe._id, params: { recipeId: recipe._id }}">Voir la recette</RouterLink></b-button>-->
       </b-card>
     </b-card-group>
   </div>

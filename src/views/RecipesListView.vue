@@ -1,7 +1,11 @@
 <template>
-    <Recipes
-        :recipeList="recipes"
+    <Recipes v-if="$store.getters.getUser != null"
+             :recipeList="recipes"
     />
+    <b-card v-else class="centerT customCard">
+      <h1>Bienvenue sur Deep Fried Recipes</h1>
+      <h4>Vous devez être connecté pour accédé aux recettes !</h4>
+    </b-card>
 </template>
 
 <script>
@@ -15,11 +19,17 @@ export default {
     },
   },
   async mounted() {
-    await this.$store.dispatch("initRecipes");
+    if (this.$store.getters.getUser != null) {
+      await this.$store.dispatch("initRecipes");
+    }
   },
 };
 </script>
 
 <style scoped>
-
+.customCard {
+  margin: 50px auto auto auto !important;
+  width: 800px;
+  padding: 20px;
+}
 </style>

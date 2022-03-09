@@ -25,18 +25,17 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Submit</b-button>
+          <div v-show="message">{{ message }}</div>
+          <b-button type="submit" variant="primary">Se connecter</b-button>
         </b-form>
       </div>
       <div v-else class="centerT">
-        Vous êtes déjà connecté
+        Vous êtes déjà connecté !
       </div>
     </b-card>
 </template>
 
 <script>
-import {mapActions} from "vuex";
-
 export default {
   name: "Login",
   data() {
@@ -45,20 +44,19 @@ export default {
         email: "",
         password: "",
       },
+      message: null
     };
   },
   methods: {
-    ...mapActions({
-      login: 'login',
-    }),
     async onSubmit(event) {
       event.preventDefault();
-      const response = await this.login(this.form)
-      console.log(response)
+      const response = await this.$store.dispatch("login", this.form)
+      console.log({response})
       if (response === 200) {
-        this.message = "Compte crée"
+        this.message = "Connexion réussie !"
+        await this.$router.push("/")
       } else {
-        this.message = "Erreur lors de la création du compte"
+        this.message = "Login ou mot de passe ou incorrect."
       }
     },
   },

@@ -55,7 +55,6 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
 
 export default {
   name: "Register",
@@ -71,17 +70,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions({
-      register: 'register',
-    }),
     async onSubmit(event) {
       event.preventDefault();
-      const response = await this.register(this.form)
+      const response = await this.$store.dispatch("register", this.form)
       console.log(response)
       if (response === 200) {
-        this.message = "Compte crée"
+        this.message = "Compte crée."
       } else {
-        this.message = "Erreur lors de la création du compte"
+        this.message = "Erreur lors de la création du compte."
       }
     },
   },
