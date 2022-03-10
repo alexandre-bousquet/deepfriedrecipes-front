@@ -2,8 +2,8 @@
   <b-card-group deck>
     <b-card
         :title="recipe.name_recette"
-        :img-src="'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette"
-        :img-alt="'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette"
+        :img-src="recipe.image_recette ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette : 'https://restbd-alex.tinygoblins.fr/media/6229d288b55385400001c719'"
+        :img-alt="recipe.image_recette ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette : 'https://restbd-alex.tinygoblins.fr/media/6229d288b55385400001c719'"
         img-top
         class="mb-2 customCard">
 
@@ -17,11 +17,15 @@
 
       <div v-if="user && user.email === recipe.user[0].email">
         <b-button variant="warning" v-b-modal.modal-form @click="initModal">Modifier la recette</b-button>
-        <b-button variant="danger" @click="onDelete">Supprimer la recette</b-button>
+        <b-button variant="danger" v-b-modal.modal-delete>Supprimer la recette</b-button>
       </div>
 
+      <b-modal id="modal-delete" size="sm" title="Supprimer la recette" @ok="onDelete">
+        Etes-vous certains de vouloir supprimer cette recette ?
+      </b-modal>
+
       <b-modal id="modal-form" size="lg" title="Modifier la recette" @ok="onSubmit">
-        <UpdateForm :form="recipe" />
+        <Form :create="false" :form="form"/>
       </b-modal>
     </b-card>
   </b-card-group>
@@ -29,10 +33,10 @@
 
 <script>
 import {mapActions} from "vuex";
-import UpdateForm from "@/components/Recipe/UpdateForm";
+import Form from "@/components/Recipe/Form";
 export default {
   name: "Recipe",
-  components: {UpdateForm},
+  components: {Form},
   data() {
     return {
       user: this.$store.state.user,
@@ -53,7 +57,14 @@ export default {
       await this.$router.push("/")
     },
     initModal() {
-      this.form = this.recipe
+      this.form = {
+        _id: this.recipe._id,
+        name_recette: this.recipe.name_recette,
+        description_recette: this.recipe.description_recette,
+        ingredients_recette: this.recipe.ingredients_recette,
+        etapes_recette: this.recipe.etapes_recette,
+        temps_recette: this.recipe.temps_recette
+      }
     },
     onSubmit(event) {
       event.preventDefault()

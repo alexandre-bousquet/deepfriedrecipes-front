@@ -6,11 +6,8 @@
           v-for="recipe in recipeList"
           :key="recipe._id"
           :title="recipe.temps_recette ? recipe.name_recette + ' (' + recipe.temps_recette + ')' : recipe.name_recette"
-          :img-src="
-          'https://restbd-alex.tinygoblins.fr/media/' +
-          recipe.image_recette[0]
-        "
-          :img-alt="recipe.image_recette[0]"
+          :img-src="recipe.image_recette ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette[0] : 'https://restbd-alex.tinygoblins.fr/media/6229d288b55385400001c719'"
+          :img-alt="recipe.image_recette ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette[0] : 'https://restbd-alex.tinygoblins.fr/media/6229d288b55385400001c719'"
           img-top
           class="mb-2"
       >

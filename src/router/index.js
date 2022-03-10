@@ -4,7 +4,7 @@ import Home from "@/views/Home";
 import Login from "@/views/Login";
 import RecipeView from "@/views/RecipeView";
 import Register from "@/views/Register";
-import Profil from "@/components/Profil";
+import Profil from "@/views/Profil";
 import store from "@/store/index";
 
 Vue.use(Router);
