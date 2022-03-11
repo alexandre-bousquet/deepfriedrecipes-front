@@ -51,6 +51,12 @@ export default {
         this.$bvModal.hide("modal-form")
       })
       this.createRecipe(this.form)
+      this.$bvToast.toast('Recette créée avec succès', {
+        toaster: 'b-toaster-top-center',
+        variant: 'success',
+        autoHideDelay: 1500,
+        solid: true,
+      })
     }
   },
   mounted() {

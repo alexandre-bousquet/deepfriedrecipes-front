@@ -55,6 +55,12 @@ export default {
       event.preventDefault();
       await this.deleteRecipe(this.recipe._id)
       await this.$router.push("/")
+      this.$bvToast.toast('Recette supprimée avec succès', {
+        toaster: 'b-toaster-top-center',
+        variant: 'success',
+        autoHideDelay: 2500,
+        solid: true,
+      })
     },
     initModal() {
       this.form = {
@@ -72,6 +78,12 @@ export default {
         this.$bvModal.hide("modal-form")
       })
       this.updateRecipe(this.form)
+      this.$bvToast.toast('Recette modifiée avec succès', {
+        toaster: 'b-toaster-top-center',
+        variant: 'success',
+        autoHideDelay: 2500,
+        solid: true,
+      })
     }
   }
 };
