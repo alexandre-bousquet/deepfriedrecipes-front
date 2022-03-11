@@ -51,7 +51,12 @@ export default new Vuex.Store({
     actions: {
         initRecipes({commit}) {
             axios
-                .get("https://deepfriedrecipes.herokuapp.com/recipes/get")
+                .get("https://deepfriedrecipes.herokuapp.com/recipes/get", {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.getters.getUser.jwt,
+                        'Content-Type': 'application/json'
+                    }
+                })
                 .then((response) => {
                     console.log(response.data);
                     commit("updateRecipes", response.data);
@@ -63,7 +68,12 @@ export default new Vuex.Store({
         },
         async getRecipe(context, id) {
             const response = await axios
-                .get("https://deepfriedrecipes.herokuapp.com/recipes/get/" + id)
+                .get("https://deepfriedrecipes.herokuapp.com/recipes/get/" + id, {
+                    headers: {
+                        'Authorization': 'Bearer ' + context.getters.getUser.jwt,
+                        'Content-Type': 'application/json'
+                    }
+                })
                 .catch((error) => {
                     console.log({error});
                 });
