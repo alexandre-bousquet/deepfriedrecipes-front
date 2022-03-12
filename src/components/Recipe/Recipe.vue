@@ -72,12 +72,13 @@ export default {
         temps_recette: this.recipe.temps_recette
       }
     },
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault()
       this.$nextTick(() => {
         this.$bvModal.hide("modal-form")
       })
-      this.updateRecipe(this.form)
+      await this.updateRecipe(this.form)
+      await this.$emit('updated')
       this.$bvToast.toast('Recette modifiée avec succès', {
         toaster: 'b-toaster-top-center',
         variant: 'success',

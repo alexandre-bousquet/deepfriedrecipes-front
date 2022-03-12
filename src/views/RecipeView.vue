@@ -2,6 +2,7 @@
     <Recipe
         v-if="recipe"
         :recipe="recipe"
+        @updated="updateRecipe"
     />
 </template>
 
@@ -20,16 +21,16 @@ export default {
     ...mapActions({
       getRecipe: 'getRecipe',
     }),
+    updateRecipe() {
+      this.getRecipe(this.$route.params.id).then(
+          response => {
+            this.recipe = response
+          }
+      );
+    }
   },
-
   async mounted() {
-    console.log(this.$route.params.id)
-    this.getRecipe(this.$route.params.id).then(
-        response => {
-          this.recipe = response
-        }
-    );
-    console.log(this.recipe)
+    this.updateRecipe()
   },
 };
 </script>

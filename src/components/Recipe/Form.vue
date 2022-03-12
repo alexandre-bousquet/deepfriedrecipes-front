@@ -1,8 +1,6 @@
 <template>
-  <div>
     <CreateForm v-if="create === true" :form="form"/>
     <UpdateForm v-else :form="form"/>
-  </div>
 </template>
 
 <script>
