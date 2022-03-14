@@ -59,4 +59,17 @@ export default {
   background-color: black;
   box-shadow: 0 0 20px -10px #000000;
 }
+
+.card{
+  border: 2px solid #0069d9 !important;
+  box-shadow: 0 0 20px -10px #000000;
+}
+
+.customNavLinkMarRight {
+  margin-right: 20px;
+}
+
+.customNavLinkPadRight {
+  padding-right: 20px;
+}
 </style>

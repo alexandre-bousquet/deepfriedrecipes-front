@@ -1,22 +1,36 @@
 <template>
   <b-card-group deck>
     <b-card
-        :title="recipe.name_recette"
+        :title="recipe.temps_recette ? recipe.name_recette + ' (' + recipe.temps_recette + ')' : recipe.name_recette"
         :img-src="recipe.image_recette ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette : 'https://restbd-alex.tinygoblins.fr/media/6229d288b55385400001c719'"
         :img-alt="recipe.image_recette ? 'https://restbd-alex.tinygoblins.fr/media/' + recipe.image_recette : 'https://restbd-alex.tinygoblins.fr/media/6229d288b55385400001c719'"
         img-top
         class="mb-2 customCard">
 
       <b-card-text>
-        {{ recipe.description_recette }}
-        {{ recipe.temps_recette }}
-        {{ recipe.ingredients_recette }}
-        {{ recipe.etapes_recette }}
-        {{ recipe.user[0].email }}
+        <div v-if="recipe.user">
+          Recette proposée par {{ recipe.user[0].firstname + " " + recipe.user[0].lastname}}
+        </div>
+        <div v-if="recipe.description_recette">
+          <h5>Description</h5>
+          {{ recipe.description_recette }}
+        </div>
+        <div v-if="recipe.ingredients_recette">
+          <h5>Ingrédients</h5>
+          <div class="list">
+            {{ recipe.ingredients_recette }}
+          </div>
+        </div>
+        <div v-if="recipe.etapes_recettes">
+          <h5>Etapes</h5>
+          <div class="list">
+            {{ recipe.etapes_recettes }}
+          </div>
+        </div>
       </b-card-text>
 
-      <div v-if="user && user.email === recipe.user[0].email">
-        <b-button variant="warning" v-b-modal.modal-form @click="initModal">Modifier la recette</b-button>
+      <div v-if="user && recipe.user && user.email === recipe.user[0].email">
+        <b-button variant="warning" v-b-modal.modal-form @click="initModal" class="customNavLinkMarRight">Modifier la recette</b-button>
         <b-button variant="danger" v-b-modal.modal-delete>Supprimer la recette</b-button>
       </div>
 
@@ -68,7 +82,7 @@ export default {
         name_recette: this.recipe.name_recette,
         description_recette: this.recipe.description_recette,
         ingredients_recette: this.recipe.ingredients_recette,
-        etapes_recette: this.recipe.etapes_recette,
+        etapes_recettes: this.recipe.etapes_recettes,
         temps_recette: this.recipe.temps_recette
       }
     },
@@ -96,5 +110,13 @@ export default {
   width: 800px !important;
   padding: 20px;
   flex: inherit !important;
+}
+
+.card-text div {
+  padding-bottom: 20px;
+}
+
+.card-text .list {
+  white-space: pre-line;
 }
 </style>

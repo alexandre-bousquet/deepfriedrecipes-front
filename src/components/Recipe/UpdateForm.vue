@@ -24,8 +24,8 @@
     <b-form-group id="textArea-group-etapes" label="Etapes de la recette" label-for="textArea-etapes">
       <b-form-textarea
           id="textArea-etapes"
-          v-model="form.etapes_recette"
-      >{{form.etapes_recette}}</b-form-textarea>
+          v-model="form.etapes_recettes"
+      >{{form.etapes_recettes}}</b-form-textarea>
     </b-form-group>
 
     <b-form-group id="input-group-temps" label="Temps de préparation de la recette" label-for="input-temps">
