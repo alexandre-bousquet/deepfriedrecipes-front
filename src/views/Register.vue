@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card>
-      <h1 class="centerT">Register</h1>
+      <h1 class="centerT">S'inscrire</h1>
       <br>
       <b-form class="customForm" @submit="onSubmit">
         <b-form-group id="input-group-1" label="Firstname" label-for="input-1">
@@ -48,7 +48,7 @@
         </b-form-group>
 
         <div v-show="message">{{ message }}</div>
-        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="submit" variant="primary">Soumettre</b-button>
       </b-form>
     </b-card>
   </div>

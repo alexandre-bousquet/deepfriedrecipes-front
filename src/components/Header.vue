@@ -12,13 +12,13 @@
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <div v-if="$store.getters.getUser == null">
-            <b-button class="customNavLinkMarRight"><router-link to="/profil"><router-link to="/login">Login</router-link></router-link></b-button>
-            <b-button variant="primary" href=""><router-link to="/register">Register</router-link></b-button>
+            <b-button variant="primary" class="customNavLinkMarRight" @click="$router.push('/login')">Se connecter</b-button>
+            <b-button variant="primary" @click="$router.push('/register')">S'inscrire</b-button>
           </div>
 
           <div v-else>
-            <b-button class="customNavLinkMarRight"><router-link to="/profil">{{ $store.getters.getUser.firstname }} {{ $store.getters.getUser.lastname }}</router-link></b-button>
-            <b-button @click="$route.name !== 'home' ? $store.dispatch('logout') && $router.push('/') : $store.dispatch('logout')">Déconnexion</b-button>
+            <b-button variant="primary" class="customNavLinkMarRight" @click="$router.push('/profil')">{{ $store.getters.getUser.firstname }} {{ $store.getters.getUser.lastname }}</b-button>
+            <b-button variant="danger" @click="$route.name !== 'home' ? $store.dispatch('logout') && $router.push('/') : $store.dispatch('logout')">Déconnexion</b-button>
           </div>
         </b-navbar-nav>
       </b-collapse>

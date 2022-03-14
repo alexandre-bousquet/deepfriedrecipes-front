@@ -1,7 +1,7 @@
 <template>
     <b-card>
       <div v-if="$store.getters.getUser == null">
-        <h1 class="centerT">Login</h1>
+        <h1 class="centerT">Connexion</h1>
         <br>
         <b-form @submit="onSubmit">
           <b-form-group id="input-group-1" label="Email" label-for="input-1">

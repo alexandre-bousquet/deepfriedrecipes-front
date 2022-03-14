@@ -41,7 +41,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if ((to.name !== "loginPage" && to.name !== "register") && store.getters.getUser == null) {
+  if ((to.name !== "home" && to.name !== "loginPage" && to.name !== "register") && store.getters.getUser == null) {
     next({ name: "loginPage" });
   } else {
     next();
