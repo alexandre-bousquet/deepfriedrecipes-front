@@ -150,6 +150,23 @@ export default new Vuex.Store({
             }
 
         },
+        async editUser(context, form) {
+            try {
+                await axios.post("https://deepfriedrecipes.herokuapp.com/my-users/put/" + form._id, form, {
+                    headers: {
+                        'Authorization': 'Bearer ' + context.getters.getUser.jwt,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((response) => {
+                    context.commit("setUser", response.data.user);
+                });
+                return 200;
+            } catch(error) {
+                console.log(error)
+                return 401;
+            }
+        },
         initUser(context) {
             const user = JSON.parse(window.localStorage.getItem("user"));
             if (user != null) {

@@ -39,7 +39,7 @@
       </b-modal>
 
       <b-modal id="modal-form" size="lg" title="Modifier la recette" @ok="onSubmit">
-        <Form :create="false" :form="form"/>
+        <Form :profile="false" :create="false" :form="form"/>
       </b-modal>
     </b-card>
   </b-card-group>
