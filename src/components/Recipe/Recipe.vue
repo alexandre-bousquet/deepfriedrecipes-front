@@ -34,11 +34,11 @@
         <b-button variant="danger" v-b-modal.modal-delete>Supprimer la recette</b-button>
       </div>
 
-      <b-modal id="modal-delete" size="sm" title="Supprimer la recette" @ok="onDelete">
+      <b-modal id="modal-delete" size="sm" title="Supprimer la recette" @ok="onDelete" cancel-title="Annuler">
         Etes-vous certains de vouloir supprimer cette recette ?
       </b-modal>
 
-      <b-modal id="modal-form" size="lg" title="Modifier la recette" @ok="onSubmit">
+      <b-modal id="modal-form" size="lg" title="Modifier la recette" @ok="onSubmit" cancel-title="Annuler">
         <Form :profile="false" :create="false" :form="form"/>
       </b-modal>
     </b-card>

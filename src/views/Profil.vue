@@ -36,10 +36,10 @@
         <b-button variant="primary" v-b-modal.modal-form>Créér votre première recette !</b-button>
       </b-card>
     </b-card-group>
-    <b-modal id="modal-form" size="lg" title="Créér votre propre recette" @ok="onSubmit">
+    <b-modal id="modal-form" size="lg" title="Créér votre propre recette" @ok="onSubmit" cancel-title="Annuler">
       <Form :profile="false" :create="true" :form="form"/>
     </b-modal>
-    <b-modal id="modal-form-profil" size="lg" title="Modifier votre profil" @ok="updateUser">
+    <b-modal id="modal-form-profil" size="lg" title="Modifier votre profil" @ok="updateUser" cancel-title="Annuler">
       <Form :profile="true" :form="userForm"/>
     </b-modal>
   </div>

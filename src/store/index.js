@@ -3,8 +3,6 @@ import Vuex from "vuex";
 import axios from "axios";
 import router from "@/router";
 import Recipe from "@/components/Recipe/Recipe";
-/*import { getSkills } from "@/helpers/apiHelper";
-import { getRecipes } from "@/helpers/apiHelper";*/
 
 Vue.use(Vuex);
 
@@ -19,9 +17,7 @@ export default new Vuex.Store({
             return state.recipes;
         },
         getRecipe : (state) => (recipeId) => {
-            console.log(state.recipes);
             return state.recipes.find(recipe => recipe._id === recipeId);
-            //return axios.get("https://deepfriedrecipes.herokuapp.com/recipes/get" + recipeId);
         },
         getUser: (state) => {
             if (state.user !== null) {
@@ -36,7 +32,6 @@ export default new Vuex.Store({
         updateRecipes(state, recipes) {
             state.recipes = recipes;
             for (let i = 0; i < recipes.length; i++) {
-                console.log({ path: '/recipe/' + recipes[i]._id, component: Recipe, props: { recipeId: recipes[i]._id }})
                 router.addRoute({ path: '/recipe/' + recipes[i]._id, component: Recipe, props: { recipeId: recipes[i]._id }})
             }
         },
@@ -50,30 +45,31 @@ export default new Vuex.Store({
     },
     actions: {
         initRecipes({commit}) {
-            const recipes = JSON.parse(window.localStorage.getItem("recipes"))
-            if (recipes != null) {
-                commit("updateRecipes", recipes)
-            } else {
-                this.initRecipesBD(commit)
+            if (this.getters.getUser) {
+                const recipes = JSON.parse(window.localStorage.getItem("recipes"))
+                if (recipes != null) {
+                    commit("updateRecipes", recipes)
+                } else {
+                    this.dispatch("initRecipesBD")
+                }
             }
         },
         async initRecipesBD({commit}) {
-            await
-                axios.get("https://deepfriedrecipes.herokuapp.com/recipes/get", {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.getters.getUser.jwt,
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then((response) => {
-                    console.log(response.data);
-                    commit("updateRecipes", response.data);
-                    localStorage.setItem("recipes", JSON.stringify(response.data));
-                })
-                .catch((error) => {
-                    console.log({error});
-                    console.log("Server not up");
-                });
+            await axios.get("https://deepfriedrecipes.herokuapp.com/recipes/get", {
+                headers: {
+                    'Authorization': 'Bearer ' + this.getters.getUser.jwt,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                console.log(response.data);
+                commit("updateRecipes", response.data);
+                localStorage.setItem("recipes", JSON.stringify(response.data));
+            })
+            .catch((error) => {
+                console.log({error});
+                console.log("Server not up");
+            });
         },
         async getRecipe(context, id) {
             const response = await axios

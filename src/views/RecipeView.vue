@@ -20,9 +20,7 @@ export default {
   },
   methods: {
     updateRecipe() {
-      const recette = this.$store.getters.getRecipe(this.$route.params.id)
-      console.log({recette})
-      this.recipe = recette
+      this.recipe = this.$store.getters.getRecipe(this.$route.params.id)
     }
   },
   async mounted() {
