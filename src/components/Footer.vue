@@ -2,7 +2,7 @@
   <footer>
     Deep Fried Recipes ©
     <br>
-    A website made by Alexandre Bousquet and Ikiou Hamza
+    A website made by Alexandre Bousquet and Hamza Ikiou
   </footer>
 </template>
 

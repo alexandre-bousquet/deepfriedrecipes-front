@@ -27,10 +27,14 @@
 
           <div v-if="!isLoading">
             <div v-show="message">{{ message }}</div>
+            <br>
             <b-button type="submit" variant="primary">Se connecter</b-button>
           </div>
           <div v-else>
-            <b-spinner label="Chargement..."  variant="primary"/>
+            <b-button variant="primary" disabled>
+              <b-spinner small></b-spinner>
+              Connexion...
+            </b-button>
           </div>
         </b-form>
       </div>

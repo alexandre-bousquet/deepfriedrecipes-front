@@ -3,8 +3,8 @@
     <b-card-group deck>
       <b-card
           :title="'Profil'"
-          class="mb-2">
-
+          class="mb-2"
+      >
         <b-card-text>
           <div v-if="user.firstname">
             <h5>Prénom</h5>
@@ -22,6 +22,7 @@
         <b-button variant="primary" v-b-modal.modal-form-profil>Modifier votre profil</b-button>
       </b-card>
     </b-card-group>
+    <br>
     <div v-if="recipes.length > 0">
       <Recipes
          :recipeList="recipes"
