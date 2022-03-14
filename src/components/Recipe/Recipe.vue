@@ -92,6 +92,7 @@ export default {
         this.$bvModal.hide("modal-form")
       })
       await this.updateRecipe(this.form)
+      await this.$store.dispatch("initRecipesBD")
       await this.$emit('updated')
       this.$bvToast.toast('Recette modifiée avec succès', {
         toaster: 'b-toaster-top-center',
@@ -100,6 +101,9 @@ export default {
         solid: true,
       })
     }
+  },
+  mounted() {
+    this.$emit('reload')
   }
 };
 </script>

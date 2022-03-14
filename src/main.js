@@ -13,6 +13,7 @@ Vue.use(Vuex);
 Vue.config.productionTip = false;
 
 store.dispatch("initUser");
+store.dispatch("initRecipes");
 
 new Vue({
   render: (h) => h(App),

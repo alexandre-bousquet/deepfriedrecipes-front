@@ -19,7 +19,7 @@ export default new Vuex.Store({
             return state.recipes;
         },
         getRecipe : (state) => (recipeId) => {
-            //console.log(state.recipes);
+            console.log(state.recipes);
             return state.recipes.find(recipe => recipe._id === recipeId);
             //return axios.get("https://deepfriedrecipes.herokuapp.com/recipes/get" + recipeId);
         },
@@ -50,8 +50,16 @@ export default new Vuex.Store({
     },
     actions: {
         initRecipes({commit}) {
-            axios
-                .get("https://deepfriedrecipes.herokuapp.com/recipes/get", {
+            const recipes = JSON.parse(window.localStorage.getItem("recipes"))
+            if (recipes != null) {
+                commit("updateRecipes", recipes)
+            } else {
+                this.initRecipesBD(commit)
+            }
+        },
+        async initRecipesBD({commit}) {
+            await
+                axios.get("https://deepfriedrecipes.herokuapp.com/recipes/get", {
                     headers: {
                         'Authorization': 'Bearer ' + this.getters.getUser.jwt,
                         'Content-Type': 'application/json'
@@ -60,6 +68,7 @@ export default new Vuex.Store({
                 .then((response) => {
                     console.log(response.data);
                     commit("updateRecipes", response.data);
+                    localStorage.setItem("recipes", JSON.stringify(response.data));
                 })
                 .catch((error) => {
                     console.log({error});

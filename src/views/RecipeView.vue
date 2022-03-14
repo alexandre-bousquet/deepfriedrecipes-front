@@ -2,31 +2,27 @@
     <Recipe
         v-if="recipe"
         :recipe="recipe"
+        @reload="updateRecipe"
         @updated="updateRecipe"
     />
 </template>
 
 <script>
-import {mapActions} from "vuex";
 import Recipe from "@/components/Recipe/Recipe";
+
 export default {
   name: "RecipeView",
   components: {Recipe},
   data() {
     return {
-      recipe: {},
+      recipe: undefined
     }
   },
   methods: {
-    ...mapActions({
-      getRecipe: 'getRecipe',
-    }),
     updateRecipe() {
-      this.getRecipe(this.$route.params.id).then(
-          response => {
-            this.recipe = response
-          }
-      );
+      const recette = this.$store.getters.getRecipe(this.$route.params.id)
+      console.log({recette})
+      this.recipe = recette
     }
   },
   async mounted() {
