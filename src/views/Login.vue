@@ -25,8 +25,13 @@
             ></b-form-input>
           </b-form-group>
 
-          <div v-show="message">{{ message }}</div>
-          <b-button type="submit" variant="primary">Se connecter</b-button>
+          <div v-if="!isLoading">
+            <div v-show="message">{{ message }}</div>
+            <b-button type="submit" variant="primary">Se connecter</b-button>
+          </div>
+          <div v-else>
+            <b-spinner label="Chargement..."  variant="primary"/>
+          </div>
         </b-form>
       </div>
       <div v-else class="centerT">
@@ -40,6 +45,7 @@ export default {
   name: "Login",
   data() {
     return {
+      isLoading: false,
       form: {
         email: "",
         password: "",
@@ -49,6 +55,7 @@ export default {
   },
   methods: {
     async onSubmit(event) {
+      this.isLoading = true
       event.preventDefault();
       const response = await this.$store.dispatch("login", this.form)
       console.log({response})
@@ -58,6 +65,7 @@ export default {
       } else {
         this.message = "Login ou mot de passe ou incorrect."
       }
+      this.isLoading = false
     },
   },
 };

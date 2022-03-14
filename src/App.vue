@@ -22,18 +22,21 @@ export default {
 </script>
 
 <style>
-#app {
+
+body, #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
   color: #2c3e50;
-  /*margin-top: 60px;*/
+  display: flex !important;
+  min-height: 100vh !important;
+  flex-direction: column !important;
 }
 
 #container {
   justify-content: space-between;
   padding: 30px;
+  flex: 1 0 auto !important;
 }
 
 .centerT {
