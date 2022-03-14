@@ -23,18 +23,20 @@
       </b-card>
     </b-card-group>
     <br>
-    <div v-if="recipes.length > 0">
+    <div v-if="recipes.length > 0" class="text-center">
       <Recipes
          :recipeList="recipes"
+         :profile="true"
       />
-      <b-button variant="primary" v-b-modal.modal-form>Créér une recette</b-button>
+      <br>
+      <b-button variant="primary" size="lg" v-b-modal.modal-form>Créér une recette</b-button>
     </div>
     <b-card-group v-else class="centerT padBot20">
       <b-card>
         <b-card-text>
           Vous n'avez créé aucune recette
         </b-card-text>
-        <b-button variant="primary" v-b-modal.modal-form>Créér votre première recette !</b-button>
+        <b-button variant="primary" size="lg" v-b-modal.modal-form>Créér votre première recette !</b-button>
       </b-card>
     </b-card-group>
     <b-modal id="modal-form" size="lg" title="Créér votre propre recette" @ok="onSubmit" cancel-title="Annuler">
@@ -128,4 +130,5 @@ export default {
 .card-text div {
   padding-bottom: 20px;
 }
+
 </style>

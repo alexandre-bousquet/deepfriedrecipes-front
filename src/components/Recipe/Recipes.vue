@@ -1,13 +1,16 @@
 <template>
   <div class="marAuto">
-    <h2 class="centerT padBot20">Toutes les recettes</h2>
-    <b-pagination
-        v-model="currentPage"
-        :total-rows="rows"
-        :per-page="perPage"
-        align="center"
-    />
-    <br>
+    <h2 v-if="profile" class="centerT padBot20">Toutes vos recettes</h2>
+    <h2 v-else class="centerT padBot20">Toutes les recettes</h2>
+    <div v-show="recipeList.length > perPage">
+      <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          align="center"
+      />
+      <br>
+    </div>
     <b-card-group deck v-if="recipeList.length > 0">
       <b-card
           v-for="(recipe, index) in recipeList"
@@ -34,6 +37,7 @@ export default {
   name: "Recipes",
   props: {
     recipeList: [],
+    profile: Boolean
   },
   data() {
     return {
