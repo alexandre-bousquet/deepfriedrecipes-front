@@ -4,23 +4,23 @@
       <h1 class="centerT">S'inscrire</h1>
       <br>
       <b-form class="customForm" @submit="onSubmit">
-        <b-form-group id="input-group-1" label="Firstname" label-for="input-1">
+        <b-form-group id="input-group-1" label="Prénom" label-for="input-1">
           <b-form-input
               id="input-1"
               v-model="form.firstname"
               type="text"
-              placeholder="Enter your firstname"
+              placeholder="Entrez votre prénom"
               class="leftT"
               required
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group id="input-group-2" label="Lastname" label-for="input-2">
+        <b-form-group id="input-group-2" label="Nom" label-for="input-2">
           <b-form-input
               id="input-2"
               v-model="form.lastname"
               type="text"
-              placeholder="Enter your lastname"
+              placeholder="Entrez votre nom"
               class="leftT"
               required
           ></b-form-input>
@@ -31,23 +31,24 @@
               id="input-3"
               v-model="form.email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="Entrez votre adresse mail"
               class="leftT"
               required
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group id="input-group-4" label="Password" label-for="input-4">
+        <b-form-group id="input-group-4" label="Mot de passe" label-for="input-4">
           <b-form-input
               id="input-4"
               v-model="form.password"
               type="password"
-              placeholder="Enter your password"
+              placeholder="Entrez votre mot de passe"
               required
           ></b-form-input>
         </b-form-group>
 
         <div v-show="message">{{ message }}</div>
+        <br>
         <b-button type="submit" variant="primary">Soumettre</b-button>
       </b-form>
     </b-card>

@@ -4,7 +4,7 @@
     />
     <b-card v-else class="centerT customCard">
       <h1>Bienvenue sur Deep Fried Recipes</h1>
-      <h4>Vous devez être connecté pour accédé aux recettes !</h4>
+      <h4>Vous devez être connecté pour accéder aux recettes !</h4>
     </b-card>
 </template>
 

@@ -9,18 +9,18 @@
                 id="input-1"
                 v-model="form.email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Entrez votre adresse mail"
                 class="leftT"
                 required
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="Password" label-for="input-2">
+          <b-form-group id="input-group-2" label="Mot de passe" label-for="input-2">
             <b-form-input
                 id="input-2"
                 v-model="form.password"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Entrez votre mot de passe"
                 required
             ></b-form-input>
           </b-form-group>
