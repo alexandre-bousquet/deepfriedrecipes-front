@@ -5,6 +5,9 @@
         @reload="updateRecipe"
         @updated="updateRecipe"
     />
+  <b-card v-else>
+    <h1 class="centerT">La recette demandée n'existe pas</h1>
+  </b-card>
 </template>
 
 <script>

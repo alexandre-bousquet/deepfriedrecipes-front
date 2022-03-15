@@ -6,6 +6,7 @@ import RecipeView from "@/views/RecipeView";
 import Register from "@/views/Register";
 import Profil from "@/views/Profil";
 import store from "@/store/index";
+import Error from "@/views/Error";
 
 Vue.use(Router);
 
@@ -36,8 +37,13 @@ const router = new Router({
       path: "/profil",
       name: "profilPage",
       component: Profil
+    },
+    {
+      path: "/*",
+      name: "error",
+      component: Error
     }
-  ]
+    ]
 });
 
 router.beforeEach((to, from, next) => {
