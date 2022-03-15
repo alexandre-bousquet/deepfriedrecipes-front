@@ -68,6 +68,7 @@ export default {
     async onDelete(event) {
       event.preventDefault();
       await this.deleteRecipe(this.recipe._id)
+      await this.$store.dispatch("initRecipesBD")
       await this.$router.push("/")
       this.$bvToast.toast('Recette supprimée avec succès', {
         toaster: 'b-toaster-top-center',

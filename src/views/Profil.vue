@@ -76,12 +76,14 @@ export default {
       createRecipe: 'createRecipe',
       editUser: 'editUser'
     }),
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault()
       this.$nextTick(() => {
         this.$bvModal.hide("modal-form")
       })
-      this.createRecipe(this.form)
+      await this.createRecipe(this.form)
+      await this.$store.dispatch("initRecipesBD")
+      await this.$router.push("/")
       this.$bvToast.toast('Recette créée avec succès', {
         toaster: 'b-toaster-top-center',
         variant: 'success',
